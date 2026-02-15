@@ -722,39 +722,19 @@
             line-height: 1.6;
         }
 
-        .map-placeholder {
+        .map-container {
             height: 450px;
-            background: linear-gradient(135deg, #6B4226, #946230);
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
+            overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
             position: relative;
-            overflow: hidden;
         }
 
-        .map-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.1) 50%,
-                transparent 70%
-            );
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
         }
         #newsletter {
             background: linear-gradient(135deg, rgba(107, 66, 38, 0.05), rgba(255, 215, 0, 0.05));
@@ -1322,7 +1302,7 @@
                 font-size: 1.5rem;
             }
 
-            .map-placeholder {
+            .map-container {
                 height: 300px;
             }
         }
@@ -1751,14 +1731,22 @@
                     </div>
                     <div class="location-text">
                         <h4>Email</h4>
-                        <p>info@wesleyscoffeeshop.com<br>We'll respond within 24 hours</p>
+                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e575058517e495b4d525b474d5d5158585b5b4d56514e105d5153">[email&#160;protected]</a><br>We'll respond within 24 hours</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="map-placeholder">
-            <i class="fas fa-map-location-dot"></i>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.2976315394814!2d121.01623007585944!3d14.644238585912438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b7ec95d0fb8f%3A0x4580861c8c8a0!2sQuezon%20City%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1234567890123!5m2!1sen!2sph"
+                width="100%" 
+                height="100%" 
+                style="border:0; border-radius: 20px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
     </div>
 </section>
@@ -1846,7 +1834,7 @@
     </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Smooth scroll for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -1946,5 +1934,6 @@
         observer.observe(el);
     });
 </script>
+
 </body>
 </html>

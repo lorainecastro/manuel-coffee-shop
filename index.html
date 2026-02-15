@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wesley's Coffee Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FDF6F0;
+            line-height: 1.6;
+            color: #333333;
+        }
+
+        h1, h2, h3 {
+            margin: 0.5em 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #946230;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        /* BILOG NA LOGO SA TAAS */
+        .header-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin: 20px 0 10px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .header-subtitle {
+            font-size: 20px;
+            margin-bottom: 0;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .header-subtitle:hover {
+            transform: scale(1.05);
+        }
+
+        /* IMPROVED NAVIGATION */
+        nav {
+            background: linear-gradient(135deg, #543310 0%, #6B4226 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid rgba(255, 215, 0, 0.3);
+        }
+
+        nav a {
+            color: white;
+            padding: 18px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a i {
+            font-size: 18px;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 215, 0, 0.15);
+            color: #FFD700;
+        }
+
+        nav a:hover::before {
+            width: 80%;
+        }
+
+        /* SECTION STYLING */
+        section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0 0 60px 0;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6B4226, #946230, #A0522D);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 8s ease infinite;
+            position: relative;
+            letter-spacing: -1px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #6B4226, #FFD700, #FF8C00);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* HOME SECTION */
+        .home-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .home-text {
+            padding: 2rem;
+        }
+
+        .home-text h3 {
+            font-size: 2.2rem;
+            color: #6B4226;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .home-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #5a3d2b;
+            margin-bottom: 2rem;
+        }
+
+        .home-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 240, 0.9));
+            border-radius: 12px;
+            border: 2px solid rgba(107, 66, 38, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            border-color: #FFD700;
+            box-shadow: 0 8px 20px rgba(107, 66, 38, 0.15);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6B4226, #946230);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #6B4226;
+        }
+
+        .home-image-container {
+            position: relative;
+        }
+
+        .home-img {
+            border-radius: 20px;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .home-img:hover {
+            transform: scale(1.02);
+        }
+
+        .home-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3d2817;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* PRODUCTS SECTION */
+        #product {
+            background: linear-gradient(135deg, rgba(255, 248, 240, 0.5), rgba(241, 230, 220, 0.5));
+            padding: 80px 5%;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(107, 66, 38, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(107, 66, 38, 0.25);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #6B4226, #946230);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3d2817;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .product-info {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            color: #6B4226;
+            margin: 0 0 1rem 0;
+            font-weight: 800;
+        }
+
+        .product-card .product-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #5a3d2b;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(107, 66, 38, 0.1);
+        }
+
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6B4226, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-button {
+            background: linear-gradient(135deg, #6B4226, #946230);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-button:hover {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3d2817;
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .product-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating i {
+            color: #FFD700;
+            font-size: 1rem;
+        }
+
+        /* TESTIMONIALS SECTION */
+        #testimonials {
+            background: linear-gradient(135deg, #6B4226 0%, #946230 100%);
+            padding: 80px 5%;
+            color: white;
+        }
+
+        #testimonials h2 {
+            color: white;
+        }
+
+        #testimonials h2::after {
+            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(255, 215, 0, 0.3);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #FFD700;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #3d2817;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .author-info p {
+            margin: 0.3rem 0 0 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-rating i {
+            color: #FFD700;
+        }
+
+        /* GALLERY SECTION */
+        #gallery {
+            background: white;
+            padding: 80px 5%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(107, 66, 38, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(61, 40, 23, 0.95), transparent);
+            padding: 2rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 1.3rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .gallery-overlay p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* FAQ SECTION */
+        #faq {
+            background: white;
+            padding: 80px 5%;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 240, 0.9));
+            border: 2px solid rgba(107, 66, 38, 0.1);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #FFD700;
+            box-shadow: 0 8px 25px rgba(107, 66, 38, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.8rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #6B4226;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #946230;
+        }
+
+        .faq-question i {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            color: #FFD700;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 2rem 1.8rem 2rem;
+        }
+
+        .faq-answer p {
+            color: #5a3d2b;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* LOCATION SECTION */
+        #location {
+            background: linear-gradient(135deg, rgba(107, 66, 38, 0.05), rgba(255, 215, 0, 0.05));
+            padding: 80px 5%;
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .location-info {
+            padding: 2rem;
+        }
+
+        .location-info h3 {
+            font-size: 2rem;
+            color: #6B4226;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid rgba(107, 66, 38, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .location-item:hover {
+            border-color: #FFD700;
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(107, 66, 38, 0.1);
+        }
+
+        .location-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6B4226, #946230);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .location-text h4 {
+            font-size: 1.1rem;
+            color: #6B4226;
+            margin: 0 0 0.5rem 0;
+            font-weight: 700;
+        }
+
+        .location-text p {
+            margin: 0;
+            color: #5a3d2b;
+            line-height: 1.6;
+        }
+
+        .map-placeholder {
+            height: 450px;
+            background: linear-gradient(135deg, #6B4226, #946230);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        #newsletter {
+            background: linear-gradient(135deg, rgba(107, 66, 38, 0.05), rgba(255, 215, 0, 0.05));
+            padding: 80px 5%;
+        }
+
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-subtitle {
+            font-size: 1.2rem;
+            color: #5a3d2b;
+            margin-bottom: 3rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 280px;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid rgba(107, 66, 38, 0.2);
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
+        }
+
+        .newsletter-button {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #6B4226, #946230);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .newsletter-button:hover {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3d2817;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .newsletter-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #5a3d2b;
+        }
+
+        .newsletter-feature i {
+            color: #6B4226;
+            font-size: 1.3rem;
+        }
+        #about {
+            background: white;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            padding: 2rem;
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            color: #6B4226;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #5a3d2b;
+            margin-bottom: 2rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(107, 66, 38, 0.05), rgba(255, 215, 0, 0.05));
+            border-radius: 15px;
+            border: 2px solid rgba(107, 66, 38, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6B4226, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #5a3d2b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .about-image-main {
+            grid-column: 1 / -1;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .about-image-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image-main:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-image-small {
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .about-image-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image-small:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(61, 40, 23, 0.9), transparent);
+            padding: 1.5rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .about-logo {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .about-logo img {
+            display: block;
+            margin: 20px auto 0 auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(107, 66, 38, 0.3);
+            border: 5px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .about-logo img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .about-tagline {
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6B4226, #FFD700, #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .about-tagline:hover {
+            transform: scale(1.05);
+        }
+
+        /* BEAUTIFUL FOOTER - Similar to Mobile App Showcase */
+        footer {
+            background: linear-gradient(135deg, #3d2817 0%, #543310 100%);
+            border-top: 3px solid rgba(255, 215, 0, 0.3);
+            padding: 5rem 5% 3rem;
+            color: #E5D4C1;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+        }
+
+        .footer-logo i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 380px;
+            opacity: 0.9;
+            margin-bottom: 1.8rem;
+            color: #E5D4C1;
+        }
+
+        .footer-column h4 {
+            color: #FFD700;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 2px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-column a,
+        .contact-list li {
+            color: #E5D4C1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.98rem;
+            display: block;
+        }
+
+        .footer-column a:hover {
+            color: #FFD700;
+            transform: translateX(6px);
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-list i {
+            color: #FFD700;
+            min-width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.35s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #3d2817;
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.35);
+        }
+
+        .footer-bottom {
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .copyright {
+            opacity: 0.85;
+            color: #E5D4C1;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: #E5D4C1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: #FFD700;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .home-content,
+            .about-container,
+            .location-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                flex-direction: column;
+                align-items: center;
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 0;
+            }
+
+            nav a {
+                margin: 0;
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            .header-subtitle {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .home-features {
+                grid-template-columns: 1fr;
+            }
+
+            .home-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .home-img {
+                height: 350px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .about-content h3 {
+                font-size: 2rem;
+            }
+
+            .about-image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .newsletter-input,
+            .newsletter-button {
+                width: 100%;
+            }
+
+            .newsletter-features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+                padding: 1.5rem 1.5rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+
+            .location-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .map-placeholder {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="est.jpg" alt="Wesley Shop Logo" class="header-logo">
+    <h1>Coffee Shop</h1>
+    <p class="header-subtitle">Moments Brewed, Memories Served</p>
+</header>
+
+<nav>
+    <a href="#home">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+    <a href="#product">
+        <i class="fa-solid fa-mug-hot"></i>
+        Products
+    </a>
+    <a href="#about">
+        <i class="fa-solid fa-circle-info"></i>
+        About Us
+    </a>
+</nav>
+
+<section id="home">
+    <h2>Welcome Home</h2>
+    <div class="home-content">
+        <div class="home-text">
+            <h3>Crafted with Love, Served with Passion</h3>
+            <p>Experience the perfect blend of premium coffee beans, expert brewing techniques, and cozy atmosphere. Every cup at Wesley's Coffee Shop tells a story of dedication, quality, and the simple pleasure of a great coffee moment.</p>
+            
+            <div class="home-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="feature-text">Premium Beans</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="feature-text">100% Organic</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="feature-text">Freshly Roasted</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="feature-text">Made with Love</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-image-container">
+            <img src="wise.jpg" class="home-img" alt="Coffee Making">
+            <div class="home-badge">
+                <i class="fas fa-star"></i> Since 2026
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="product">
+    <h2>Our Products</h2>
+    <div class="products">
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="coffee1.jpg" alt="Hot Coffee">
+                <div class="product-badge">Popular</div>
+            </div>
+            <div class="product-info">
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Hot Coffee</h3>
+                <p class="product-description">Savor the warmth and bold aroma of our hot coffee, crafted to comfort and energize your day with every sip.</p>
+                <div class="product-footer">
+                    <div class="product-price">₱150</div>
+                    <button class="product-button">
+                        Order Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="coffee1.jpg" alt="Iced Coffee">
+                <div class="product-badge">Best Seller</div>
+            </div>
+            <div class="product-info">
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <h3>Iced Coffee</h3>
+                <p class="product-description">Refresh yourself with our chilled iced coffee, a crisp and invigorating blend that cools and energizes with every sip.</p>
+                <div class="product-footer">
+                    <div class="product-price">₱180</div>
+                    <button class="product-button">
+                        Order Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="coffee1.jpg" alt="Chocolate Coffee">
+                <div class="product-badge">New</div>
+            </div>
+            <div class="product-info">
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Chocolate Coffee</h3>
+                <p class="product-description">Indulge in the perfect blend of rich coffee and velvety chocolate, crafted to awaken your senses with every sip.</p>
+                <div class="product-footer">
+                    <div class="product-price">₱200</div>
+                    <button class="product-button">
+                        Order Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <div class="about-container">
+        <div class="about-content">
+            <h3>Our Story, Your Perfect Cup</h3>
+            <p>Wesley's Coffee Shop started in 2026 with a simple goal: to give people a cozy place to relax and enjoy quality coffee. We focus on good service, tasty drinks, and a friendly atmosphere that makes every visit memorable.</p>
+            <p>From sourcing the finest beans to perfecting our brewing methods, every detail matters. We believe coffee is more than a beverage – it's an experience, a moment of peace, and a reason to connect.</p>
+            
+            <div class="about-stats">
+                <div class="stat-box">
+                    <span class="stat-number">2026</span>
+                    <div class="stat-label">Established</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">50+</span>
+                    <div class="stat-label">Coffee Blends</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">10K+</span>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-image-grid">
+            <div class="about-image-main">
+                <img src="wise.jpg" alt="Coffee Shop Interior">
+            </div>
+            <div class="about-image-small">
+                <img src="coffee1.jpg" alt="Coffee Beans">
+                <div class="about-image-overlay">Premium Beans</div>
+            </div>
+            <div class="about-image-small">
+                <img src="coffee1.jpg" alt="Barista">
+                <div class="about-image-overlay">Expert Baristas</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials-container">
+        <div class="testimonial-card">
+            <p class="testimonial-text">
+                "The best coffee in Manila! The atmosphere is cozy, the staff is friendly, and the coffee is absolutely perfect. I come here every morning before work."
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar">M</div>
+                <div class="author-info">
+                    <h4>Maria Santos</h4>
+                    <p>Regular Customer</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <p class="testimonial-text">
+                "Wesley's Coffee Shop has become my go-to place for meetings and work. Great WiFi, amazing coffee, and the perfect environment to be productive."
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar">J</div>
+                <div class="author-info">
+                    <h4>John Reyes</h4>
+                    <p>Freelancer</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <p class="testimonial-text">
+                "Their chocolate coffee is to die for! I've tried coffee shops all over the city, but nothing compares to Wesley's. Highly recommended!"
+            </p>
+            <div class="testimonial-author">
+                <div class="author-avatar">A</div>
+                <div class="author-info">
+                    <h4>Anna Garcia</h4>
+                    <p>Coffee Enthusiast</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="coffee1.jpg" alt="Coffee Art">
+            <div class="gallery-overlay">
+                <h4>Latte Art</h4>
+                <p>Beautiful designs in every cup</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="wise.jpg" alt="Cozy Interior">
+            <div class="gallery-overlay">
+                <h4>Cozy Interior</h4>
+                <p>A perfect place to relax</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="coffee1.jpg" alt="Fresh Brew">
+            <div class="gallery-overlay">
+                <h4>Fresh Brew</h4>
+                <p>Made with premium beans</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="wise.jpg" alt="Coffee Making">
+            <div class="gallery-overlay">
+                <h4>Expert Baristas</h4>
+                <p>Crafting perfection daily</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="coffee1.jpg" alt="Specialty Drinks">
+            <div class="gallery-overlay">
+                <h4>Specialty Drinks</h4>
+                <p>Unique flavors and blends</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="wise.jpg" alt="Morning Coffee">
+            <div class="gallery-overlay">
+                <h4>Morning Bliss</h4>
+                <p>Start your day right</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="newsletter">
+    <div class="newsletter-container">
+        <h2>Stay Updated</h2>
+        <p class="newsletter-subtitle">Subscribe to our newsletter and get exclusive offers, new product updates, and coffee tips!</p>
+        
+        <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+            <button type="submit" class="newsletter-button">
+                Subscribe <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+
+        <div class="newsletter-features">
+            <div class="newsletter-feature">
+                <i class="fas fa-gift"></i>
+                <span>Exclusive Offers</span>
+            </div>
+            <div class="newsletter-feature">
+                <i class="fas fa-bell"></i>
+                <span>New Products</span>
+            </div>
+            <div class="newsletter-feature">
+                <i class="fas fa-coffee"></i>
+                <span>Coffee Tips</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What are your opening hours?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>We're open Monday to Friday from 7:00 AM to 9:00 PM, and Saturday to Sunday from 8:00 AM to 10:00 PM. We're here to serve you fresh coffee throughout the day!</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do you offer free WiFi?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! We provide free high-speed WiFi for all our customers. Whether you're working, studying, or browsing, stay connected while enjoying your coffee.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Can I customize my coffee order?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Absolutely! We're happy to customize your drink with different milk options (oat, almond, soy), sweetness levels, extra shots, and more. Just let our baristas know your preferences!</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do you have vegan or dairy-free options?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! We offer oat milk, almond milk, and soy milk as dairy-free alternatives. We also have vegan pastries and snacks available.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do you accept reservations for groups?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>We welcome groups! For parties of 8 or more, we recommend calling ahead at +63 912 345 6789 so we can prepare a comfortable space for your group.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="location">
+    <h2>Visit Us</h2>
+    <div class="location-container">
+        <div class="location-info">
+            <h3>Find Us Here</h3>
+            <div class="location-details">
+                <div class="location-item">
+                    <div class="location-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Address</h4>
+                        <p>123 Coffee Street, Quezon City<br>Metro Manila, Philippines</p>
+                    </div>
+                </div>
+
+                <div class="location-item">
+                    <div class="location-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Phone</h4>
+                        <p>+63 912 345 6789<br>Available during business hours</p>
+                    </div>
+                </div>
+
+                <div class="location-item">
+                    <div class="location-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Hours</h4>
+                        <p>Mon-Fri: 7:00 AM - 9:00 PM<br>Sat-Sun: 8:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="location-item">
+                    <div class="location-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="location-text">
+                        <h4>Email</h4>
+                        <p>info@wesleyscoffeeshop.com<br>We'll respond within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-placeholder">
+            <i class="fas fa-map-location-dot"></i>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <!-- Brand / Left wide column -->
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <i class="fa-solid fa-mug-hot"></i>
+                Wesley's Coffee Shop
+            </div>
+            <p class="footer-tagline">
+                Brewing quality coffee with passion and care. Every cup tells a story, every moment creates a memory. Join us for an unforgettable coffee experience.
+            </p>
+            <div class="social-links">
+                <a href="https://facebook.com/WesleysCoffeeShop" class="social-link" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com/WesleysCoffeeShop" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="#" class="social-link" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Column -->
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#product">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </div>
+
+        <!-- Company Column -->
+        <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#news">News & Events</a></li>
+                <li><a href="#franchise">Franchise</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Connect Column -->
+        <div class="footer-column">
+            <h4>Contact Us</h4>
+            <ul class="contact-list">
+                <li>
+                    <i class="fas fa-envelope"></i> 
+                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="452c2b232a0532203629203c36262a23232020362d2a356b262a28">[email&#160;protected]</a>
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i> 
+                    +63 912 345 6789
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i> 
+                    123 Coffee St., Manila, PH
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+        <p class="copyright">© 2026 Wesley's Coffee Shop. All Rights Reserved. Crafted with ❤️ and ☕</p>
+        <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookies Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add active state to navigation
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.style.background = '';
+            if (link.getAttribute('href').slice(1) === current) {
+                link.style.background = 'rgba(255, 215, 0, 0.15)';
+            }
+        });
+    });
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('.newsletter-input').value;
+            alert(`Thank you for subscribing! We'll send updates to ${email}`);
+            newsletterForm.reset();
+        });
+    }
+
+    // Product buttons
+    const productButtons = document.querySelectorAll('.product-button');
+    productButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            alert('Order feature coming soon! Call us at +63 912 345 6789 to place your order.');
+        });
+    });
+
+    // Add scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all major elements
+    document.querySelectorAll('.product-card, .testimonial-card, .gallery-item, .stat-box, .feature-item, .location-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>

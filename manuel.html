@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,9 @@
             color: #333333;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             margin: 0.5em 0;
         }
 
@@ -49,20 +52,20 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
         header h1 {
             font-size: 48px;
             margin: 20px 0 10px 0;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
 
         .header-subtitle {
             font-size: 20px;
             margin-bottom: 0;
             font-style: italic;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease;
         }
 
@@ -78,7 +81,7 @@
             align-items: center;
             flex-wrap: wrap;
             padding: 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -147,20 +150,20 @@
             max-width: 500px;
             margin: 20px auto;
             background: linear-gradient(145deg, #FFF8F0, #F1E6DC);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
 
         .box:hover {
             transform: translateY(-8px);
-            box-shadow: 0 18px 36px rgba(0,0,0,0.25);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.25);
         }
 
         .home-img {
             border-radius: 12px;
             margin-bottom: 20px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
         .products {
@@ -176,14 +179,14 @@
             margin: 15px;
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
         }
 
         .product-card:hover {
             transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.25);
         }
 
         .product-card h3 {
@@ -209,7 +212,7 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .about-tagline {
@@ -219,7 +222,7 @@
             background: linear-gradient(90deg, #A0522D, #FFD700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
 
@@ -401,6 +404,7 @@
             .footer-content {
                 grid-template-columns: 1fr 1fr;
             }
+
             .footer-brand {
                 grid-column: 1 / -1;
             }
@@ -439,7 +443,7 @@
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            
+
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
@@ -451,188 +455,198 @@
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <img src="est.jpg" alt="Wesley Shop Logo" class="header-logo">
-    <h1>Coffee Shop</h1>
-    <p class="header-subtitle">Moments Brewed, Memories Served</p>
-</header>
+    <header>
+        <img src="est.jpg" alt="Wesley Shop Logo" class="header-logo">
+        <h1>Coffee Shop</h1>
+        <p class="header-subtitle">Moments Brewed, Memories Served</p>
+    </header>
 
-<nav>
-    <a href="#home">
-        <i class="fa-solid fa-house"></i>
-        Home
-    </a>
-    <a href="#product">
-        <i class="fa-solid fa-mug-hot"></i>
-        Products
-    </a>
-    <a href="#about">
-        <i class="fa-solid fa-circle-info"></i>
-        About Us
-    </a>
-</nav>
+    <nav>
+        <a href="#home">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+        <a href="#product">
+            <i class="fa-solid fa-mug-hot"></i>
+            Products
+        </a>
+        <a href="#about">
+            <i class="fa-solid fa-circle-info"></i>
+            About Us
+        </a>
+    </nav>
 
-<section id="home">
-    <h2>Home</h2>
-    <div class="box">
-        <img src="wise.jpg" class="home-img" alt="Coffee Making">
-        <p>The coffee is made in a clean and organized place with all necessary equipment. Fresh coffee beans, clean water, and high-quality ingredients are used to ensure that every cup tastes amazing. With a coffee maker or espresso machine, the coffee stays hot and aromatic, providing a delightful experience for every customer.</p>
-    </div>
-</section>
-
-<section id="product">
-    <h2>Products</h2>
-    <div class="products">
-        <div class="product-card">
-            <img src="coffee1.jpg" alt="Hot Coffee">
-            <h3>Hot Coffee</h3>
-            <p>Savor the warmth and bold aroma of our hot coffee, crafted to comfort and energize your day with every sip.</p>
-            <p><strong>$1,000,000</strong></p>
+    <section id="home">
+        <h2>Home</h2>
+        <div class="box">
+            <img src="wise.jpg" class="home-img" alt="Coffee Making">
+            <p>The coffee is made in a clean and organized place with all necessary equipment. Fresh coffee beans, clean
+                water, and high-quality ingredients are used to ensure that every cup tastes amazing. With a coffee
+                maker or espresso machine, the coffee stays hot and aromatic, providing a delightful experience for
+                every customer.</p>
         </div>
-        <div class="product-card">
-            <img src="coffee1.jpg" alt="Iced Coffee">
-            <h3>Iced Coffee</h3>
-            <p>Refresh yourself with our chilled iced coffee, a crisp and invigorating blend that cools and energizes with every sip.</p>
-            <p><strong>$1,000,000</strong></p>
-        </div>
-        <div class="product-card">
-            <img src="coffee1.jpg" alt="Chocolate Coffee">
-            <h3>Chocolate Coffee</h3>
-            <p>Indulge in the perfect blend of rich coffee and velvety chocolate, crafted to awaken your senses with every sip.</p>
-            <p><strong>$1,000,000</strong></p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section id="about">
-    <h2>About Us</h2>
-    <div class="box">
-        <p>Wesley's Coffee Shop started in 2026 with a simple goal: to give people a cozy place to relax and enjoy quality coffee. We focus on good service, tasty drinks, and a friendly atmosphere.</p>
-    </div>
-</section>
-
-<footer>
-    <div class="footer-content">
-        <!-- Brand / Left wide column -->
-        <div class="footer-brand">
-            <div class="footer-logo">
-                <i class="fa-solid fa-mug-hot"></i>
-                Wesley's Coffee Shop
+    <section id="product">
+        <h2>Products</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="coffee1.jpg" alt="Hot Coffee">
+                <h3>Hot Coffee</h3>
+                <p>Savor the warmth and bold aroma of our hot coffee, crafted to comfort and energize your day with
+                    every sip.</p>
+                <p><strong>$1,000,000</strong></p>
             </div>
-            <p class="footer-tagline">
-                Brewing quality coffee with passion and care. Every cup tells a story, every moment creates a memory. Join us for an unforgettable coffee experience.
-            </p>
-            <div class="social-links">
-                <a href="https://facebook.com/WesleysCoffeeShop" class="social-link" title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com/WesleysCoffeeShop" class="social-link" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-link" title="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link" title="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <a href="#" class="social-link" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
+            <div class="product-card">
+                <img src="coffee1.jpg" alt="Iced Coffee">
+                <h3>Iced Coffee</h3>
+                <p>Refresh yourself with our chilled iced coffee, a crisp and invigorating blend that cools and
+                    energizes with every sip.</p>
+                <p><strong>$1,000,000</strong></p>
+            </div>
+            <div class="product-card">
+                <img src="coffee1.jpg" alt="Chocolate Coffee">
+                <h3>Chocolate Coffee</h3>
+                <p>Indulge in the perfect blend of rich coffee and velvety chocolate, crafted to awaken your senses with
+                    every sip.</p>
+                <p><strong>$1,000,000</strong></p>
             </div>
         </div>
+    </section>
 
-        <!-- Navigation Column -->
-        <div class="footer-column">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#product">Products</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#menu">Menu</a></li>
-            </ul>
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="box">
+            <p>Wesley's Coffee Shop started in 2026 with a simple goal: to give people a cozy place to relax and enjoy
+                quality coffee. We focus on good service, tasty drinks, and a friendly atmosphere.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <!-- Brand / Left wide column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    Wesley's Coffee Shop
+                </div>
+                <p class="footer-tagline">
+                    Brewing quality coffee with passion and care. Every cup tells a story, every moment creates a
+                    memory. Join us for an unforgettable coffee experience.
+                </p>
+                <div class="social-links">
+                    <a href="https://facebook.com/WesleysCoffeeShop" class="social-link" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/WesleysCoffeeShop" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="social-link" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Column -->
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#product">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </div>
+
+            <!-- Company Column -->
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#news">News & Events</a></li>
+                    <li><a href="#franchise">Franchise</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect Column -->
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        info@wesleyscoffeeshop.com
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        +63 912 345 6789
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        123 Coffee St., Manila, PH
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <!-- Company Column -->
-        <div class="footer-column">
-            <h4>Company</h4>
-            <ul>
-                <li><a href="#careers">Careers</a></li>
-                <li><a href="#news">News & Events</a></li>
-                <li><a href="#franchise">Franchise</a></li>
-                <li><a href="#privacy">Privacy Policy</a></li>
-            </ul>
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <p class="copyright">© 2026 Wesley's Coffee Shop. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookies Policy</a>
+            </div>
         </div>
+    </footer>
 
-        <!-- Connect Column -->
-        <div class="footer-column">
-            <h4>Contact Us</h4>
-            <ul class="contact-list">
-                <li>
-                    <i class="fas fa-envelope"></i> 
-                    info@wesleyscoffeeshop.com
-                </li>
-                <li>
-                    <i class="fas fa-phone"></i> 
-                    +63 912 345 6789
-                </li>
-                <li>
-                    <i class="fas fa-map-marker-alt"></i> 
-                    123 Coffee St., Manila, PH
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Bottom bar -->
-    <div class="footer-bottom">
-        <p class="copyright">© 2026 Wesley's Coffee Shop. All Rights Reserved.</p>
-        <div class="footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookies Policy</a>
-        </div>
-    </div>
-</footer>
-
-<script>
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
-    });
 
-    // Add active state to navigation
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav a');
+        // Add active state to navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - 200)) {
-                current = section.getAttribute('id');
-            }
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.background = 'rgba(255, 215, 0, 0.15)';
+                }
+            });
         });
-
-        navLinks.forEach(link => {
-            link.style.background = '';
-            if (link.getAttribute('href').slice(1) === current) {
-                link.style.background = 'rgba(255, 215, 0, 0.15)';
-            }
-        });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

@@ -2,254 +2,883 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TrailPH — Premier Tourist Trails of the Philippines</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrailPH — Top 10 Tourist Trails</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --primary: #1a3c34;
-      --primary-light: #2f6a5d;
-      --accent: #c9a96e;
-      --text: #2e2e2e;
-      --light-bg: #f9f7f2;
-      --gray: #5c6b66;
+      --teal: #4a7c6f;
+      --teal-light: #5a9485;
+      --cream: #f5f0eb;
+      --bg: #0f0f0e;
+      --bg-dark: #0a0a09;
+      --bg-card: #1a1a18;
+      --bg-stats: #161614;
+      --border: rgba(245,240,235,0.08);
+      --text-muted: rgba(245,240,235,0.5);
+      --text-dim: rgba(245,240,235,0.65);
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Libre Franklin', system-ui, sans-serif;
-      color: var(--text);
-      background: var(--light-bg);
-      line-height: 1.7;
+      font-family: 'Playfair Display', Georgia, serif;
+      background: var(--bg);
+      color: var(--cream);
+      min-height: 100vh;
     }
-    header {
-      background: linear-gradient(rgba(26,60,52,0.78), rgba(26,60,52,0.88)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90');
-      background-size: cover;
-      background-position: center 30%;
-      color: white;
-      text-align: center;
-      padding: 12rem 2rem 8rem;
-      position: relative;
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 70px;
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease;
     }
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 120px;
-      background: linear-gradient(transparent, var(--light-bg));
+    nav.scrolled {
+      background: rgba(15,15,14,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4.2rem;
-      font-weight: 600;
-      letter-spacing: -1px;
-      margin-bottom: 0.6rem;
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
     }
-    .tagline {
-      font-size: 1.5rem;
-      font-weight: 300;
-      opacity: 0.92;
-      max-width: 720px;
-      margin: 0 auto;
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: var(--teal); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    .container {
-      max-width: 1180px;
-      margin: -4rem auto 0;
-      padding: 0 2rem;
-      position: relative;
+    .nav-logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 18px;
+      color: var(--cream); letter-spacing: -0.01em;
     }
-    .intro {
-      text-align: center;
-      font-size: 1.22rem;
-      color: var(--gray);
-      max-width: 780px;
-      margin: 0 auto 5rem;
-      font-weight: 400;
+    .nav-logo-text span { color: var(--teal); }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
     }
-    .grid {
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 400;
+      color: rgba(245,240,235,0.75);
+      text-decoration: none; letter-spacing: 0.03em;
+      transition: color 0.2s; cursor: pointer;
+    }
+    .nav-link:hover { color: var(--cream); }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      padding: 13px 28px; border-radius: 100px;
+      border: none; background: var(--teal);
+      color: #fff; cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.03em; white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: var(--teal-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(74,124,111,0.4);
+    }
+    .btn-outline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      padding: 13px 28px; border-radius: 100px;
+      border: 1.5px solid rgba(245,240,235,0.3);
+      background: transparent; color: var(--cream);
+      cursor: pointer; transition: border-color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .btn-outline:hover { border-color: rgba(245,240,235,0.7); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 80px; overflow: hidden;
+    }
+    #hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    #hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,8,0.92) 0%, rgba(10,10,8,0.3) 50%, rgba(10,10,8,0.2) 100%);
+    }
+    .hero-content {
+      position: relative; text-align: center;
+      max-width: 760px; padding: 0 24px;
+    }
+    .hero-content .section-label {
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s ease 0.2s forwards;
+    }
+    .hero-content h1 {
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 16px 0 20px; color: var(--cream);
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 0.9s ease forwards;
+    }
+    .hero-content p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px; font-weight: 300;
+      color: rgba(245,240,235,0.7);
+      line-height: 1.7; margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeIn 0.9s ease 0.4s forwards;
+    }
+    .hero-cta {
+      display: flex; gap: 14px; justify-content: center;
+      opacity: 0; transform: translateY(10px);
+      animation: fadeUp 0.9s ease 0.6s forwards;
+    }
+    .scroll-indicator {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: rgba(245,240,235,0.5); animation: bounce 2s infinite;
+      opacity: 0; animation: bounce 2s infinite 1s, fadeIn 1s ease 1s forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+    }
+
+    /* ── STATS ── */
+    #stats {
+      background: var(--bg-stats);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      padding: 32px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-size: 32px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--cream);
+    }
+    .stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--text-muted); font-weight: 300;
+    }
+
+    /* ── SECTIONS ── */
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.18em; color: var(--teal);
+      text-transform: uppercase; display: block;
+    }
+    .section-heading {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 700; letter-spacing: -0.02em;
+      margin-top: 4px;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .divider {
+      width: 48px; height: 2px;
+      background: linear-gradient(to right, var(--teal), transparent);
+      margin: 16px auto 0;
+    }
+
+    /* ── FEATURED ── */
+    #featured {
+      padding: 100px 40px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .featured-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 2.8rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 14px 38px rgba(0,0,0,0.09);
-      transition: all 0.32s ease;
+
+    /* ── ALL TRAILS ── */
+    #trails-section {
+      padding: 0 40px 100px;
+      max-width: 1200px; margin: 0 auto;
     }
-    .card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 24px 56px rgba(0,0,0,0.14);
+    .filters {
+      display: flex; gap: 10px;
+      justify-content: center;
+      margin-bottom: 48px; flex-wrap: wrap;
     }
+    .filter-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      padding: 8px 20px; border-radius: 100px;
+      border: 1.5px solid rgba(245,240,235,0.2);
+      background: transparent; color: rgba(245,240,235,0.6);
+      cursor: pointer; transition: all 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+    .filter-btn:hover { border-color: rgba(245,240,235,0.5); color: var(--cream); }
+    .filter-btn.active {
+      background: var(--teal); border-color: var(--teal); color: #fff;
+    }
+    .trails-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── TRAIL CARD ── */
+    .trail-card {
+      border-radius: 16px; overflow: hidden;
+      position: relative; cursor: pointer;
+      transition: transform 0.35s cubic-bezier(.25,.8,.25,1), box-shadow 0.35s ease;
+      background: var(--bg-card);
+    }
+    .trail-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .trail-card:hover .card-img { transform: scale(1.07); }
     .card-img {
-      height: 260px;
-      background-size: cover;
-      background-position: center;
+      width: 100%; height: 280px; object-fit: cover;
+      transition: transform 0.5s ease; display: block;
     }
-    .card-body {
-      padding: 2.2rem 2rem 2rem;
+    .card-img.small { height: 240px; }
+    .card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.1) 100%);
     }
-    .rank {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.15rem;
-      padding: 0.4rem 1.1rem;
-      border-radius: 50px;
-      margin-bottom: 1.1rem;
+    .card-badges {
+      position: absolute; top: 16px; left: 16px;
+      display: flex; gap: 8px;
     }
-    h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-      color: var(--primary);
+    .card-badges.small { top: 14px; left: 14px; }
+    .difficulty-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500;
+      padding: 4px 10px; border-radius: 100px;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
-    .meta {
-      color: var(--gray);
-      font-size: 1rem;
-      margin-bottom: 1.2rem;
-      font-style: italic;
+    .diff-Easy   { background: rgba(74,222,128,0.15);  color: #4ade80; }
+    .diff-Moderate { background: rgba(250,204,21,0.15); color: #facc15; }
+    .diff-Hard   { background: rgba(251,146,60,0.15);  color: #fb923c; }
+    .diff-Expert { background: rgba(248,113,113,0.15); color: #f87171; }
+
+    .card-rating {
+      position: absolute; top: 16px; right: 16px;
+      display: flex; align-items: center; gap: 4px;
     }
-    .description {
-      color: #3a3a3a;
-      font-size: 1.06rem;
+    .card-rating.small { top: 14px; right: 14px; }
+    .card-rating span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--cream);
     }
+    .card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px;
+    }
+    .card-content.small { padding: 20px; }
+    .card-content h3 {
+      font-size: 22px; font-weight: 700;
+      margin-bottom: 4px; letter-spacing: -0.01em;
+    }
+    .card-content.small h3 { font-size: 19px; }
+    .card-location {
+      display: flex; align-items: center; gap: 5px;
+      margin-bottom: 10px;
+    }
+    .card-location span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; color: rgba(245,240,235,0.55); font-weight: 300;
+    }
+    .card-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--text-dim);
+      line-height: 1.6; margin-bottom: 16px; font-weight: 300;
+    }
+    .card-meta {
+      display: flex; gap: 16px; margin-bottom: 14px;
+    }
+    .card-meta span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; color: rgba(245,240,235,0.45);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .view-trail-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      color: #8ecfc4; background: none; border: none;
+      cursor: pointer; padding: 0;
+      display: flex; align-items: center; gap: 6px;
+      transition: gap 0.2s ease, color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .view-trail-btn:hover { color: #aee8de; gap: 10px; }
+
+    /* ── FOOTER ── */
     footer {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 4rem 2rem;
-      margin-top: 7rem;
-      font-size: 0.98rem;
+      border-top: 1px solid var(--border);
+      padding: 48px 40px;
+      background: var(--bg-dark);
     }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--teal); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 16px; color: var(--cream);
+    }
+    .footer-logo-text span { color: var(--teal); }
+    .footer-copy {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; color: rgba(245,240,235,0.3); font-weight: 300;
+    }
+
+    /* ── MODAL ── */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(5,5,4,0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1; pointer-events: all;
+    }
+    .modal {
+      background: #faf8f5;
+      color: #1a1a18;
+      border-radius: 20px;
+      width: 100%; max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(.25,.8,.25,1);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+    .modal::-webkit-scrollbar { width: 4px; }
+    .modal::-webkit-scrollbar-track { background: #faf8f5; }
+    .modal::-webkit-scrollbar-thumb { background: #c8d8d4; border-radius: 2px; }
+    .modal-backdrop.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-hero {
+      position: relative; height: 260px; overflow: hidden;
+      border-radius: 20px 20px 0 0;
+    }
+    .modal-hero img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .modal-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 60%);
+    }
+    .modal-hero-info {
+      position: absolute; bottom: 20px; left: 24px; right: 60px;
+    }
+    .modal-hero-info .difficulty-badge {
+      font-size: 10px; padding: 3px 10px; margin-bottom: 8px; display: inline-block;
+    }
+    .modal-hero-rating {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 100px; padding: 4px 10px;
+      margin-bottom: 8px; margin-left: 8px;
+    }
+    .modal-hero-rating span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 600; color: #fff;
+    }
+    .modal-hero-info h2 {
+      font-size: clamp(24px, 5vw, 34px);
+      font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .modal-hero-loc {
+      display: flex; align-items: center; gap: 5px;
+    }
+    .modal-hero-loc span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 300;
+    }
+
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.35); }
+
+    .modal-body {
+      padding: 28px 28px 32px;
+    }
+
+    /* stat tiles */
+    .modal-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 10px; margin-bottom: 28px;
+    }
+    .modal-stat {
+      background: #f0ede8;
+      border-radius: 12px; padding: 14px 10px;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .modal-stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px; font-weight: 400;
+      color: #888; letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .modal-stat-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 600; color: #1a1a18;
+      line-height: 1.2;
+    }
+
+    /* about */
+    .modal-section { margin-bottom: 24px; }
+    .modal-section-title {
+      font-size: 18px; font-weight: 700;
+      color: #1a1a18; margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .modal-section p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; line-height: 1.75;
+      color: #444; font-weight: 300;
+    }
+
+    /* tips */
+    .modal-tips-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 18px; font-weight: 700;
+      color: #1a1a18; margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .modal-tip {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .modal-tip-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #e8f0ee; color: var(--teal);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .modal-tip span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: #444; font-weight: 300; line-height: 1.5;
+    }
+
+    /* map */
+    .modal-map-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 18px; font-weight: 700;
+      color: #1a1a18; margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .modal-map {
+      width: 100%; height: 220px; border-radius: 14px;
+      overflow: hidden; border: none;
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      h1 { font-size: 3.4rem; }
-      header { padding: 9rem 1.5rem 6rem; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .nav-links .nav-link { display: none; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      #featured, #trails-section { padding-left: 20px; padding-right: 20px; }
+      .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>TrailPH</h1>
-  <p class="tagline">Premier Tourist Trails of the Philippines</p>
-</header>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17l4-8 4 4 4-6 4 10"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">Trail<span>PH</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#trails-section">Trails</a>
+      <a class="nav-link" href="#featured">Featured</a>
+      <a class="nav-link" href="#">About</a>
+      <button class="btn-primary" style="padding:10px 22px;font-size:13px;" onclick="document.getElementById('trails-section').scrollIntoView({behavior:'smooth'})">Explore Trails</button>
+    </div>
+  </nav>
 
-<div class="container">
-  <p class="intro">An exquisite selection of the nation’s most distinguished hiking destinations — offering serene beauty, geological wonder, and profound natural splendor for discerning adventurers.</p>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/08/b3/01/shooting-sunrise-at-the.jpg?w=1200')"></div>
-      <div class="card-body">
-        <div class="rank">#1</div>
-        <h3>Mount Pulag</h3>
-        <div class="meta">Benguet · 2,922 m · The Sea of Clouds</div>
-        <p class="description">Renowned for its ethereal dawn sea of clouds above rolling grasslands — a transcendent experience on one of the country’s most accessible high peaks.</p>
+  <!-- HERO -->
+  <section id="hero">
+    <!-- <img id="hero-bg" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&q=85" alt="Philippines mountains" /> -->
+    <img id="hero-bg" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90" alt="Philippines mountains" />
+    <div id="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="section-label">Discover the Philippines</span>
+      <h1>Top 10 Tourist<br>Trails</h1>
+      <p>Explore breathtaking trails across 7,641 islands —<br>from misty mountain peaks to volcanic crater lakes</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('trails-section').scrollIntoView({behavior:'smooth'})">Explore Trails</button>
+        <button class="btn-outline">View Map</button>
       </div>
     </div>
+    <div class="scroll-indicator">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </div>
+  </section>
 
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d2/Tuktok_ng_Pilipinas.jpg')"></div>
-      <div class="card-body">
-        <div class="rank">#2</div>
-        <h3>Mount Apo</h3>
-        <div class="meta">Davao Region · 2,954 m · Highest Summit</div>
-        <p class="description">The Philippines’ supreme mountain, revered for its pristine montane forests, crater lakes, and majestic multi-day ascent.</p>
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17l4-8 4 4 4-6 4 10"/>
+        </svg>
+        <span class="stat-value">10</span>
+        <span class="stat-label">Curated Trails</span>
+      </div>
+      <div class="stat-item">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        </svg>
+        <span class="stat-value">7,641</span>
+        <span class="stat-label">Islands to Explore</span>
+      </div>
+      <div class="stat-item">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span class="stat-value">50K+</span>
+        <span class="stat-label">Happy Hikers</span>
+      </div>
+      <div class="stat-item">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span class="stat-value">4.7</span>
+        <span class="stat-label">Average Rating</span>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
-      <div class="card-body">
-        <div class="rank">#3</div>
-        <h3>Masungi Georeserve</h3>
-        <div class="meta">Rizal · Limestone Karst Formations</div>
-        <p class="description">An elegant fusion of conservation and design — suspended trails, sky bridges, and dramatic limestone peaks near Metro Manila.</p>
+  <!-- FEATURED TRAILS -->
+  <section id="featured">
+    <div class="section-header">
+      <span class="section-label">Must-Visit Destinations</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">Featured Trails</h2>
+    </div>
+    <div class="featured-grid" id="featured-grid"></div>
+  </section>
+
+  <!-- ALL TRAILS -->
+  <section id="trails-section">
+    <div class="section-header">
+      <span class="section-label">Explore All Routes</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">All Trails</h2>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Easy">Easy</button>
+      <button class="filter-btn" data-filter="Moderate">Moderate</button>
+      <button class="filter-btn" data-filter="Hard">Hard</button>
+      <button class="filter-btn" data-filter="Expert">Expert</button>
+    </div>
+    <div class="trails-grid" id="trails-grid"></div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-hero">
+        <img id="modal-img" src="" alt="" />
+        <div class="modal-hero-overlay"></div>
+        <div class="modal-hero-info">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+            <span class="difficulty-badge" id="modal-difficulty"></span>
+            <div class="modal-hero-rating">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span id="modal-rating"></span>
+            </div>
+          </div>
+          <h2 id="modal-name"></h2>
+          <div class="modal-hero-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+            <span id="modal-location"></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-stats">
+          <div class="modal-stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round"><path d="M3 17l4-8 4 4 4-6 4 10"/></svg>
+            <span class="modal-stat-label">Elevation</span>
+            <span class="modal-stat-value" id="modal-elevation"></span>
+          </div>
+          <div class="modal-stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span class="modal-stat-label">Duration</span>
+            <span class="modal-stat-value" id="modal-duration"></span>
+          </div>
+          <div class="modal-stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <span class="modal-stat-label">Best Season</span>
+            <span class="modal-stat-value" id="modal-season"></span>
+          </div>
+          <div class="modal-stat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="modal-stat-label">Difficulty</span>
+            <span class="modal-stat-value" id="modal-diff-text"></span>
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3 class="modal-section-title">About This Trail</h3>
+          <p id="modal-about"></p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-tips-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            Trail Tips
+          </div>
+          <div id="modal-tips"></div>
+        </div>
+        <div class="modal-section" style="margin-bottom:0;">
+          <div class="modal-map-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Location Map
+          </div>
+          <iframe id="modal-map" class="modal-map" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/13/Mt._Batulao%2C_Nasugbu%2C_Batangas%2C_Philippines.jpg')"></div>
-      <div class="card-body">
-        <div class="rank">#4</div>
-        <h3>Mount Batulao</h3>
-        <div class="meta">Batangas · 811 m · Open Ridges</div>
-        <p class="description">Graceful rolling ridges and panoramic vistas — an ideal introduction to Philippine mountaineering.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://suroy.ph/wp-content/uploads/2025/03/mtpinatubo_web.jpg')"></div>
-      <div class="card-body">
-        <div class="rank">#5</div>
-        <h3>Mount Pinatubo</h3>
-        <div class="meta">Tarlac/Zambales · Volcanic Crater Lake</div>
-        <p class="description">A journey to a serene turquoise lake cradled within an ancient crater — a testament to nature’s resilience and beauty.</p>
-      </div>
-    </div>
-
-    <!-- remaining trails use high-quality Unsplash placeholders for elegance -->
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
-      <div class="card-body">
-        <div class="rank">#6</div>
-        <h3>Mount Daraitan</h3>
-        <div class="meta">Rizal · Emerald River & Caves</div>
-        <p class="description">Challenging path concluding at a luminous river and hidden limestone caverns of rare beauty.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
-      <div class="card-body">
-        <div class="rank">#7</div>
-        <h3>Tarak Ridge</h3>
-        <div class="meta">Bataan · Knife-Edge Ridge</div>
-        <p class="description">Dramatic exposed ridge offering sweeping views across Manila Bay — for the intrepid hiker.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
-      <div class="card-body">
-        <div class="rank">#8</div>
-        <h3>Mount Ulap</h3>
-        <div class="meta">Benguet · Pine Forests & Views</div>
-        <p class="description">Gentle trails through cool pine groves and strawberry fields — serene Cordillera scenery.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1501555081037-4d163c2a0e19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
-      <div class="card-body">
-        <div class="rank">#9</div>
-        <h3>Mount Pico de Loro</h3>
-        <div class="meta">Cavite/Batangas · Parrot’s Beak</div>
-        <p class="description">Iconic monolith viewpoint atop a beloved Tagaytay ridge trail.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1472393365320-db77a5abbecc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
-      <div class="card-body">
-        <div class="rank">#10</div>
-        <h3>Mount Makiling</h3>
-        <div class="meta">Laguna · 1,090 m · Rainforest Biodiversity</div>
-        <p class="description">Lush montane forest rich in endemic flora, culminating in sweeping southern vistas.</p>
-      </div>
-    </div>
-
   </div>
-</div>
 
-<footer>
-  <p>TrailPH • Curated Natural Heritage of the Philippines • Tread Lightly, Leave No Trace • 2026</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 17l4-8 4 4 4-6 4 10"/>
+          </svg>
+        </div>
+        <span class="footer-logo-text">Trail<span>PH</span></span>
+      </div>
+      <p class="footer-copy">© 2026 TrailPH · Explore the Philippines, one trail at a time</p>
+    </div>
+  </footer>
 
+  <script>
+    const trails = [
+      { id:1,  name:"Mt. Pulag",            location:"Benguet, Cordillera",  rating:4.9, difficulty:"Hard",     description:"Known as the 'Playground of the Gods,' Mt. Pulag offers a stunning sea of clouds at sunrise and is home to diverse mossy forests and rare wildlife.", image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80", featured:true,  elevation:"2,922m", duration:"2 days" },
+      { id:2,  name:"Banaue Rice Terraces", location:"Ifugao, Cordillera",   rating:4.8, difficulty:"Moderate", description:"A UNESCO World Heritage Site carved into the mountains 2,000 years ago by the Ifugao people. Often called the 'Eighth Wonder of the World.'", image:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", featured:true,  elevation:"1,500m", duration:"1 day"  },
+      { id:3,  name:"Mt. Apo",              location:"Davao, Mindanao",      rating:4.7, difficulty:"Expert",   description:"The highest peak in the Philippines, Mt. Apo is a must-climb for serious mountaineers with its volcanic landscape and unique biodiversity.", image:"https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80", featured:true,  elevation:"2,954m", duration:"3 days" },
+      { id:4,  name:"Mayon Volcano",        location:"Albay, Bicol",         rating:4.6, difficulty:"Expert",   description:"The world's most perfect volcanic cone, Mayon Volcano dominates the Bicol skyline and offers an awe-inspiring trek for experienced hikers.", image:"https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=800&q=80", featured:false, elevation:"2,463m", duration:"2 days" },
+      { id:5,  name:"Chocolate Hills",      location:"Bohol",                rating:4.5, difficulty:"Easy",     description:"Over 1,200 perfectly cone-shaped hills spread across Bohol's interior, turning chocolate brown during dry season — one of Asia's most surreal landscapes.", image:"https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80", featured:false, elevation:"120m",   duration:"Half day" },
+      { id:6,  name:"Taal Volcano",         location:"Batangas, Luzon",      rating:4.4, difficulty:"Moderate", description:"A volcano within a lake within a volcano — Taal's unique geological formation makes it one of the world's most fascinating natural wonders.", image:"https://images.unsplash.com/photo-1485470733090-0aae1788d5af?w=800&q=80", featured:false, elevation:"311m",   duration:"1 day"  },
+      { id:7,  name:"Mt. Pinatubo",         location:"Zambales, Luzon",      rating:4.6, difficulty:"Moderate", description:"Trek through an otherworldly lahar landscape to reach the stunning crater lake of Mt. Pinatubo, formed after the 1991 eruption.", image:"https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80", featured:false, elevation:"1,486m", duration:"1 day"  },
+      { id:8,  name:"Batanes Trails",       location:"Batanes Islands",      rating:4.9, difficulty:"Easy",     description:"Rolling hills, rugged cliffs, and stone villages define the breathtaking Batanes landscape — the northernmost province of the Philippines.", image:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80", featured:false, elevation:"450m",   duration:"2 days" },
+      { id:9,  name:"Osmena Peak",          location:"Cebu",                 rating:4.3, difficulty:"Easy",     description:"Cebu's highest point offers panoramic views of jagged limestone peaks and distant islands — a rewarding hike for all fitness levels.", image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80", featured:false, elevation:"1,013m", duration:"Half day" },
+      { id:10, name:"Mt. Hamiguitan",       location:"Davao Oriental",       rating:4.5, difficulty:"Hard",     description:"A UNESCO World Heritage Site and home to the pygmy forest, pitcher plants, and rare Philippine Eagle — a true biodiversity gem.", image:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80", featured:false, elevation:"1,637m", duration:"2 days" },
+    ];
+
+    const pinSVG = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,235,0.55)" stroke-width="2" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>`;
+    const starSVG = (sz=13) => `<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="#f59e0b" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+    const arrowSVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+
+    function makeCard(trail, small = false) {
+      return `
+        <div class="trail-card">
+          <img class="card-img${small?' small':''}" src="${trail.image}" alt="${trail.name}" loading="lazy"/>
+          <div class="card-overlay"></div>
+          <div class="card-badges${small?' small':''}">
+            <span class="difficulty-badge diff-${trail.difficulty}">${trail.difficulty}</span>
+          </div>
+          <div class="card-rating${small?' small':''}">
+            ${starSVG(small?12:13)}
+            <span>${trail.rating}</span>
+          </div>
+          <div class="card-content${small?' small':''}">
+            <h3>${trail.name}</h3>
+            <div class="card-location">
+              ${pinSVG}
+              <span>${trail.location}</span>
+            </div>
+            ${small ? `
+              <div class="card-meta">
+                <span>↑ ${trail.elevation}</span>
+                <span>⏱ ${trail.duration}</span>
+              </div>
+            ` : `
+              <p class="card-desc">${trail.description.slice(0,100)}…</p>
+            `}
+            <button class="view-trail-btn">View Trail ${arrowSVG}</button>
+          </div>
+        </div>`;
+    }
+
+    // Render featured
+    const featuredGrid = document.getElementById('featured-grid');
+    trails.filter(t => t.featured).forEach(t => {
+      featuredGrid.insertAdjacentHTML('beforeend', makeCard(t, false));
+    });
+
+    // Render all trails
+    function renderTrails(filter) {
+      const grid = document.getElementById('trails-grid');
+      const list = filter === 'All' ? trails : trails.filter(t => t.difficulty === filter);
+      grid.innerHTML = list.map(t => makeCard(t, true)).join('');
+    }
+    renderTrails('All');
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTrails(btn.dataset.filter);
+      });
+    });
+
+    // ── TRAIL DETAIL DATA ──
+    const trailDetails = {
+      1: { season:"Nov – Feb (dry season)", about:"Mt. Pulag, known as the 'Playground of the Gods,' is the third highest peak in the Philippines and the highest in Luzon. Rising to 2,922 meters above sea level, it sits within the Benguet province of the Cordillera mountain range. The mountain is famous for its spectacular sea of clouds — a thick white blanket that covers the valleys at sunrise, creating an otherworldly landscape. Home to the unique dwarf bamboo grassland ecosystem, it shelters rare wildlife including the Luzon bleeding-heart pigeon and the Philippine deer. The trek passes through pine forests, mossy forests, and open grasslands, rewarding climbers with one of the most breathtaking summits in Southeast Asia.", tips:["Register at the DENR office in Ambangeg and obtain a climbing permit before your hike","Bring warm layers — temperatures can drop close to 0°C at the summit overnight","Time your ascent to reach the peak before sunrise for the iconic sea of clouds experience"], mapQ:"Mt. Pulag, Benguet, Philippines" },
+      2: { season:"March – May (planting season)", about:"The Banaue Rice Terraces are a marvel of ancient engineering, hand-carved into the mountainside by the Ifugao people over 2,000 years ago. Rising to an altitude of 1,500 meters, these terraces stretch across the slopes like giant green steps reaching toward the sky. Recognized as a UNESCO World Heritage Site, they are often called the 'Eighth Wonder of the World.' Walking through the terraces offers an intimate connection with centuries of indigenous farming tradition, with trails winding through villages, past traditional huts, and along irrigation channels that still function today.", tips:["Hire a local Ifugao guide for deep cultural insights and safe trail navigation","Wear sturdy shoes — trails can be muddy and slippery, especially after rain","Visit the viewpoint at sunrise or sunset for the most dramatic lighting and fewer crowds"], mapQ:"Banaue Rice Terraces, Ifugao, Philippines" },
+      3: { season:"March – May (dry season)", about:"Mt. Apo is the highest peak in the Philippines, standing at 2,954 meters above sea level in Davao, Mindanao. A must-climb for serious mountaineers, it features a diverse range of ecosystems including tropical rainforest, mossy forest, and volcanic terrain. The mountain is an active stratovolcano with sulphur vents, crater lakes, and geothermal activity that creates a surreal, almost alien landscape near the summit. It is also home to the critically endangered Philippine Eagle. Multiple trail routes exist, ranging from 2 to 4 days, each presenting unique challenges and stunning scenery.", tips:["Apply for a permit through the Mt. Apo Natural Park office well in advance","Hire an accredited Bagobo or Manobo guide — required by park regulations and deeply rewarding","Pack rain gear regardless of season; weather on the mountain is highly unpredictable"], mapQ:"Mt. Apo, Davao, Philippines" },
+      4: { season:"December – May (dry season)", about:"Mayon Volcano in Albay, Bicol Region, is celebrated worldwide for its near-perfect symmetrical cone shape — considered the most perfectly formed volcano on Earth. Rising 2,463 meters above the Bicol plain, it dominates the landscape in every direction. With over 50 recorded eruptions since 1616, it remains one of the most active volcanoes in the Philippines. Trekking to its upper slopes offers sweeping views of Albay Gulf and the surrounding countryside. Access to the summit is restricted during periods of volcanic activity, so always check current PHIVOLCS alerts before planning your climb.", tips:["Check PHIVOLCS volcano bulletins daily — eruptions can occur with little warning","Only attempt the upper slopes during Quiet Alert Level 0; never ignore exclusion zones","The best photo views of the perfect cone are from the town of Cagsawa with the ruined church foreground"], mapQ:"Mayon Volcano, Albay, Philippines" },
+      5: { season:"November – May (brown hills season)", about:"The Chocolate Hills of Bohol are one of the Philippines' most iconic and surreal natural landscapes. Spread across more than 50 square kilometers in the interior of Bohol Island, the formation consists of over 1,200 perfectly cone-shaped limestone hills of roughly the same size. During the dry season (November to May), the grass covering the hills turns chocolate brown, giving them their evocative name. The hills are the remnants of marine limestone deposits that were folded and faulted by tectonic activity and then sculpted by erosion over millions of years. The main viewing deck in Carmen offers the most famous panoramic vista.", tips:["Visit during the dry season (November–May) to see the signature chocolate-brown color","Climb the viewing deck at Carmen for the classic panoramic photo — arrive early to avoid tour bus crowds","Combine your visit with a Loboc River cruise and the Philippine tarsier sanctuary for a full Bohol day trip"], mapQ:"Chocolate Hills, Bohol, Philippines" },
+      6: { season:"December – February (cool dry season)", about:"Taal Volcano presents one of the world's most unusual geological formations — a volcano island sitting inside a crater lake, which itself sits inside a larger volcanic caldera. Located in Batangas, just 65 km south of Manila, Taal is one of the Decade Volcanoes identified as warranting close study. The trek to the main crater involves a boat ride across Lake Taal to Volcano Island, followed by a hike or horseback ride to the crater rim. The view of the vivid turquoise-green crater lake from the rim is spectacular. The area remains seismically active, so always check PHIVOLCS advisories.", tips:["Book a licensed bancà (outrigger boat) from Talisay or San Nicolas for the lake crossing","Horses are available on the island for the crater ascent — negotiate the fee before riding","Bring sunscreen and water — the volcanic terrain offers little shade on the upper slopes"], mapQ:"Taal Volcano, Batangas, Philippines" },
+      7: { season:"March – May (post-rain, clear skies)", about:"Mt. Pinatubo in Zambales erupted catastrophically in June 1991, in what was the second-largest volcanic eruption of the 20th century. The eruption deposited billions of tons of ash and created a stunning 2.5-kilometer wide crater lake whose waters shift between brilliant turquoise and milky blue-green depending on volcanic activity. Today, the trek to the crater is one of the Philippines' most rewarding day hikes, passing through an otherworldly lahar landscape of grey volcanic plains, eroded canyons, and ash-covered hills before revealing the breathtaking lake at the summit.", tips:["The easiest and most popular trailhead is in Capas, Tarlac — book a 4WD vehicle for the approach road","Start the trek by 5–6 AM to reach the crater before midday heat and afternoon thunderstorms","Swimming in the crater lake is possible but check current volcanic activity status with PHIVOLCS first"], mapQ:"Mt. Pinatubo, Zambales, Philippines" },
+      8: { season:"January – June (fair weather)", about:"Batanes, the northernmost province of the Philippines, offers hiking scenery unlike anywhere else in the archipelago. Dramatic limestone sea cliffs plunge into the Pacific Ocean, rolling green hills dotted with stone Ivatan houses create a landscape reminiscent of Ireland or the Scottish Highlands, and ancient stone fortresses called idjang stand sentinel on hilltops above the sea. The main island of Batan and the larger Itbayat offer multi-day trekking routes through remote villages, past centuries-old stone churches, and along cliff-top coastal paths. The combination of indigenous Ivatan culture and dramatic natural scenery makes Batanes one of the most unique destinations in Asia.", tips:["Book domestic flights well in advance — Batanes has limited seats and frequent cancellations due to weather","Hire a local tricycle driver as a guide; they know every scenic viewpoint and hidden trail","Visit Vayang Rolling Hills and Marlboro Hills in the late afternoon for golden hour photography"], mapQ:"Batanes, Philippines" },
+      9: { season:"December – May (dry season)", about:"Osmena Peak, at 1,013 meters, is Cebu's highest point and offers a surprisingly dramatic landscape of jagged, saw-toothed limestone ridges unlike anything else in the Visayas. The hike from Dalaguete town takes 1–2 hours and is suitable for beginners and families. From the summit, on clear days, you can see the island of Negros to the west and Bohol to the east. The limestone formations create a distinctive moonscape of sharp peaks and ridges. The area around the summit also has tent camping facilities, making it a popular overnight trek for those wanting to catch the sunrise above the clouds.", tips:["The trailhead is in Mantalongon, Dalaguete — take a bus from Cebu South Bus Terminal","Wear trail shoes rather than sandals; the limestone ridges are sharp and uneven","Camp overnight and catch the sunrise for the most spectacular views; bring warm layers as it gets chilly"], mapQ:"Osmena Peak, Dalaguete, Cebu, Philippines" },
+      10: { season:"March – May (dry season)", about:"Mt. Hamiguitan Range Wildlife Sanctuary in Davao Oriental was inscribed as a UNESCO World Heritage Site in 2014 for its outstanding biodiversity. At 1,637 meters, the mountain is home to the unique pygmy forest — a cloud forest of miniaturized trees stunted by the harsh, nutrient-poor conditions at high altitude. The sanctuary protects endemic and endangered species including eight species of pitcher plant (Nepenthes), the Philippine Eagle, the Philippine Cockatoo, the Mindanao Bleeding-heart pigeon, and the critically endangered Mindanao Pygmy Fruit Bat. The trek through multiple distinct forest ecosystems is one of the most botanically rich hikes in Southeast Asia.", tips:["Permits are issued by the DENR Davao Oriental office — secure yours at least a week in advance","Accredited local guides from the Manay or Caraga area are mandatory and provide invaluable species identification","Bring a rain poncho and gaiters — the mossy forest zone is perpetually wet and muddy regardless of season"], mapQ:"Mt. Hamiguitan, Davao Oriental, Philippines" },
+    };
+
+    // ── MODAL LOGIC ──
+    const backdrop = document.getElementById('modal-backdrop');
+    const modalEl  = document.getElementById('modal');
+
+    function openModal(trailId) {
+      const t = trails.find(x => x.id === trailId);
+      const d = trailDetails[trailId];
+      if (!t || !d) return;
+
+      document.getElementById('modal-img').src = t.image.replace('w=800','w=1200');
+      document.getElementById('modal-img').alt = t.name;
+
+      const diffEl = document.getElementById('modal-difficulty');
+      diffEl.textContent = t.difficulty;
+      diffEl.className = `difficulty-badge diff-${t.difficulty}`;
+
+      document.getElementById('modal-rating').textContent = t.rating;
+      document.getElementById('modal-name').textContent = t.name;
+      document.getElementById('modal-location').textContent = t.location;
+      document.getElementById('modal-elevation').textContent = t.elevation + ' masl';
+      document.getElementById('modal-duration').textContent = t.duration;
+      document.getElementById('modal-season').textContent = d.season;
+      document.getElementById('modal-diff-text').textContent = t.difficulty;
+      document.getElementById('modal-about').textContent = d.about;
+
+      const tipsEl = document.getElementById('modal-tips');
+      tipsEl.innerHTML = d.tips.map((tip, i) => `
+        <div class="modal-tip">
+          <div class="modal-tip-num">${i+1}</div>
+          <span>${tip}</span>
+        </div>`).join('');
+
+      const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=&layer=mapnik&marker=&query=${encodeURIComponent(d.mapQ)}`;
+      document.getElementById('modal-map').src = `https://maps.google.com/maps?q=${encodeURIComponent(d.mapQ)}&output=embed&z=11`;
+
+      modalEl.scrollTop = 0;
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Delegate click on all "View Trail" buttons
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.view-trail-btn');
+      if (!btn) return;
+      const card = btn.closest('.trail-card');
+      if (!card) return;
+      const name = card.querySelector('h3').textContent;
+      const trail = trails.find(t => t.name === name);
+      if (trail) openModal(trail.id);
+    });
+
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
 </body>
 </html>

@@ -455,6 +455,109 @@
       .about-features { grid-template-columns: 1fr; }
     }
 
+    /* ── TEAM SECTION ── */
+    #team {
+      padding: 100px 40px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 0;
+    }
+    .team-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.35s cubic-bezier(.25,.8,.25,1), box-shadow 0.35s ease, border-color 0.3s;
+      position: relative;
+      cursor: default;
+    }
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.45);
+      border-color: rgba(110,207,191,0.2);
+    }
+    .team-card:hover .team-img { transform: scale(1.05); }
+    .team-card:hover .team-social { opacity: 1; transform: translateY(0); }
+    .team-img-wrap {
+      position: relative; overflow: hidden;
+      height: 220px;
+    }
+    .team-img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: grayscale(20%);
+    }
+    .team-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,15,14,0.85) 0%, rgba(15,15,14,0.1) 55%, transparent 100%);
+    }
+    .team-role-badge {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(110,207,191,0.15);
+      color: var(--teal-bright);
+      border: 1px solid rgba(110,207,191,0.25);
+      padding: 4px 10px; border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+    .team-social {
+      position: absolute; top: 14px; right: 14px; z-index: 2;
+      display: flex; gap: 6px;
+      opacity: 0; transform: translateY(-6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .team-social a {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .team-social a:hover { background: var(--teal-bright); color: #0a0a09; }
+    .team-info {
+      padding: 18px 20px 22px;
+      position: relative;
+    }
+    .team-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--cream); letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .team-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 400;
+      color: var(--teal-bright); margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+    .team-bio {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px; font-weight: 300;
+      color: var(--text-muted); line-height: 1.6;
+    }
+    .team-divider {
+      width: 32px; height: 2px;
+      background: linear-gradient(to right, var(--teal-bright), transparent);
+      margin: 10px 0;
+    }
+    @media (max-width: 1000px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+      #team { padding: 60px 20px; }
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -829,12 +932,112 @@
         </div>
         <div class="about-cta">
           <button class="btn-primary" onclick="document.getElementById('trails-section').scrollIntoView({behavior:'smooth'})">Start Exploring</button>
-          <a class="about-cta-link" href="#">
+          <a class="about-cta-link" href="#team" onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'});return false;">
             Meet our team
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section id="team">
+    <div class="section-header">
+      <span class="section-label">The People Behind the Trails</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">Meet Our Team</h2>
+    </div>
+    <div class="team-grid">
+
+      <!-- Card 1 -->
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Marco Reyes" loading="lazy" />
+          <span class="team-role-badge">Founder</span>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Email">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Marco Reyes</div>
+          <div class="team-title">Founder & Lead Mountaineer</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">Summited all 10 trails over a decade. Former DENR trail assessor and lifelong advocate for sustainable mountain tourism in the Philippines.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img class="team-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Sofia Lim" loading="lazy" />
+          <span class="team-role-badge">Trail Writer</span>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Email">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Sofia Lim</div>
+          <div class="team-title">Head of Trail Content</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">Travel journalist and outdoor writer based in Cebu. Her trail guides have helped thousands of first-time hikers navigate the Philippine highlands safely.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img class="team-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Diego Santos" loading="lazy" />
+          <span class="team-role-badge">Photographer</span>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Email">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Diego Santos</div>
+          <div class="team-title">Landscape Photographer</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">Award-winning nature photographer who has documented every trail on TrailPH. His sunrise shots from Mt. Pulag have been featured in National Geographic.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img class="team-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Anika Cruz" loading="lazy" />
+          <span class="team-role-badge">Safety Lead</span>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Email">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Anika Cruz</div>
+          <div class="team-title">Trail Safety Advisor</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">Certified wilderness first responder and Search & Rescue volunteer. Anika reviews all safety tips, permit info, and seasonal advisories across the platform.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 

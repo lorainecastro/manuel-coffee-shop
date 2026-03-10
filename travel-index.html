@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrailPH — Premier Tourist Trails of the Philippines</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap"/>
+  <style>
+    :root {
+      --primary: #1a3c34;
+      --primary-light: #2f6a5d;
+      --accent: #c9a96e;
+      --text: #2e2e2e;
+      --light-bg: #f9f7f2;
+      --gray: #5c6b66;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Libre Franklin', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--light-bg);
+      line-height: 1.7;
+    }
+    header {
+      background: linear-gradient(rgba(26,60,52,0.78), rgba(26,60,52,0.88)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90');
+      background-size: cover;
+      background-position: center 30%;
+      color: white;
+      text-align: center;
+      padding: 12rem 2rem 8rem;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(transparent, var(--light-bg));
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.2rem;
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin-bottom: 0.6rem;
+    }
+    .tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      opacity: 0.92;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1180px;
+      margin: -4rem auto 0;
+      padding: 0 2rem;
+      position: relative;
+    }
+    .intro {
+      text-align: center;
+      font-size: 1.22rem;
+      color: var(--gray);
+      max-width: 780px;
+      margin: 0 auto 5rem;
+      font-weight: 400;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.8rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 14px 38px rgba(0,0,0,0.09);
+      transition: all 0.32s ease;
+    }
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.14);
+    }
+    .card-img {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-body {
+      padding: 2.2rem 2rem 2rem;
+    }
+    .rank {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      margin-bottom: 1.1rem;
+    }
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+    .meta {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+    .description {
+      color: #3a3a3a;
+      font-size: 1.06rem;
+    }
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      margin-top: 7rem;
+      font-size: 0.98rem;
+    }
+    @media (max-width: 900px) {
+      h1 { font-size: 3.4rem; }
+      header { padding: 9rem 1.5rem 6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TrailPH</h1>
+  <p class="tagline">Premier Tourist Trails of the Philippines</p>
+</header>
+
+<div class="container">
+  <p class="intro">An exquisite selection of the nation’s most distinguished hiking destinations — offering serene beauty, geological wonder, and profound natural splendor for discerning adventurers.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/08/b3/01/shooting-sunrise-at-the.jpg?w=1200')"></div>
+      <div class="card-body">
+        <div class="rank">#1</div>
+        <h3>Mount Pulag</h3>
+        <div class="meta">Benguet · 2,922 m · The Sea of Clouds</div>
+        <p class="description">Renowned for its ethereal dawn sea of clouds above rolling grasslands — a transcendent experience on one of the country’s most accessible high peaks.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d2/Tuktok_ng_Pilipinas.jpg')"></div>
+      <div class="card-body">
+        <div class="rank">#2</div>
+        <h3>Mount Apo</h3>
+        <div class="meta">Davao Region · 2,954 m · Highest Summit</div>
+        <p class="description">The Philippines’ supreme mountain, revered for its pristine montane forests, crater lakes, and majestic multi-day ascent.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
+      <div class="card-body">
+        <div class="rank">#3</div>
+        <h3>Masungi Georeserve</h3>
+        <div class="meta">Rizal · Limestone Karst Formations</div>
+        <p class="description">An elegant fusion of conservation and design — suspended trails, sky bridges, and dramatic limestone peaks near Metro Manila.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/13/Mt._Batulao%2C_Nasugbu%2C_Batangas%2C_Philippines.jpg')"></div>
+      <div class="card-body">
+        <div class="rank">#4</div>
+        <h3>Mount Batulao</h3>
+        <div class="meta">Batangas · 811 m · Open Ridges</div>
+        <p class="description">Graceful rolling ridges and panoramic vistas — an ideal introduction to Philippine mountaineering.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://suroy.ph/wp-content/uploads/2025/03/mtpinatubo_web.jpg')"></div>
+      <div class="card-body">
+        <div class="rank">#5</div>
+        <h3>Mount Pinatubo</h3>
+        <div class="meta">Tarlac/Zambales · Volcanic Crater Lake</div>
+        <p class="description">A journey to a serene turquoise lake cradled within an ancient crater — a testament to nature’s resilience and beauty.</p>
+      </div>
+    </div>
+
+    <!-- remaining trails use high-quality Unsplash placeholders for elegance -->
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
+      <div class="card-body">
+        <div class="rank">#6</div>
+        <h3>Mount Daraitan</h3>
+        <div class="meta">Rizal · Emerald River & Caves</div>
+        <p class="description">Challenging path concluding at a luminous river and hidden limestone caverns of rare beauty.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
+      <div class="card-body">
+        <div class="rank">#7</div>
+        <h3>Tarak Ridge</h3>
+        <div class="meta">Bataan · Knife-Edge Ridge</div>
+        <p class="description">Dramatic exposed ridge offering sweeping views across Manila Bay — for the intrepid hiker.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
+      <div class="card-body">
+        <div class="rank">#8</div>
+        <h3>Mount Ulap</h3>
+        <div class="meta">Benguet · Pine Forests & Views</div>
+        <p class="description">Gentle trails through cool pine groves and strawberry fields — serene Cordillera scenery.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1501555081037-4d163c2a0e19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
+      <div class="card-body">
+        <div class="rank">#9</div>
+        <h3>Mount Pico de Loro</h3>
+        <div class="meta">Cavite/Batangas · Parrot’s Beak</div>
+        <p class="description">Iconic monolith viewpoint atop a beloved Tagaytay ridge trail.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1472393365320-db77a5abbecc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90')"></div>
+      <div class="card-body">
+        <div class="rank">#10</div>
+        <h3>Mount Makiling</h3>
+        <div class="meta">Laguna · 1,090 m · Rainforest Biodiversity</div>
+        <p class="description">Lush montane forest rich in endemic flora, culminating in sweeping southern vistas.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>TrailPH • Curated Natural Heritage of the Philippines • Tread Lightly, Leave No Trace • 2026</p>
+</footer>
+
+</body>
+</html>

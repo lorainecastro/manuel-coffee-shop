@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrailPH — Top 10 Tourist Trails in the Philippines</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"/>
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-dark: #1b5e20;
+      --accent: #f9a825;
+      --text: #333;
+      --light: #f8f9fa;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1586611650427-4d163c2a0e19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 9rem 1.5rem 6rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.5px;
+    }
+    .tagline {
+      font-size: 1.35rem;
+      font-weight: 300;
+      opacity: 0.95;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-size: 1.15rem;
+      color: #555;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2.2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    }
+    .card-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-body {
+      padding: 1.8rem 1.6rem;
+    }
+    .rank {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      margin-bottom: 0.9rem;
+    }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      margin-bottom: 0.7rem;
+      color: var(--primary-dark);
+    }
+    .meta {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .description {
+      color: #444;
+      font-size: 1.02rem;
+    }
+    footer {
+      background: var(--primary-dark);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 5rem;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      header { padding: 7rem 1rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TrailPH</h1>
+  <p class="tagline">Top 10 Tourist Trails in the Philippines</p>
+</header>
+
+<div class="container">
+  <p class="intro">Discover the most breathtaking hiking destinations across the archipelago — from beginner-friendly paths to challenging summits that reward with unforgettable views.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#1</div>
+        <h3>Mount Pulag</h3>
+        <div class="meta">Benguet · 2,922 m · Sea of Clouds</div>
+        <p class="description">Iconic grassland summit famous for the magical sea of clouds at dawn. Beginner to intermediate friendly with multiple trails.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1622208890589-1d0a3b5a9d2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#2</div>
+        <h3>Mount Apo</h3>
+        <div class="meta">Davao · 2,954 m · Highest Peak</div>
+        <p class="description">Philippines' tallest mountain. Multi-day trek through mossy forest, lakes, and stunning crater views.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#3</div>
+        <h3>Masungi Georeserve</h3>
+        <div class="meta">Rizal · Limestone trails</div>
+        <p class="description">Unique rope courses, hanging bridges, and dramatic karst formations. Perfect day trip from Manila.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#4</div>
+        <h3>Mount Batulao</h3>
+        <div class="meta">Batangas · 811 m · Rolling ridges</div>
+        <p class="description">Scenic beginner-friendly hike with open views, mini-summits, and campsites.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#5</div>
+        <h3>Mount Pinatubo</h3>
+        <div class="meta">Tarlac/Zambales · Crater Lake</div>
+        <p class="description">4×4 ride + moderate hike to a surreal turquoise crater lake inside an active volcano.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#6</div>
+        <h3>Mount Daraitan</h3>
+        <div class="meta">Tanay, Rizal · Tinipak River</div>
+        <p class="description">Challenging trail ending with emerald river and limestone caves. Very photogenic.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#7</div>
+        <h3>Tarak Ridge</h3>
+        <div class="meta">Mariveles, Bataan · Knife-edge</div>
+        <p class="description">Famous for its dramatic ridge walk and panoramic views of Manila Bay.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#8</div>
+        <h3>Mount Ulap</h3>
+        <div class="meta">Itogon, Benguet · Easy summit</div>
+        <p class="description">Gentle trail with pine forests, strawberry farms, and great Benguet views.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1501555081037-4a4e297d9c1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#9</div>
+        <h3>Mount Pico de Loro</h3>
+        <div class="meta">Cavite/Batangas · Parrot's Beak</div>
+        <p class="description">Popular hike with the iconic rock formation "Parrot's Beak" viewpoint.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1472393365320-db77a5abbecc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="card-body">
+        <div class="rank">#10</div>
+        <h3>Mount Makiling</h3>
+        <div class="meta">Laguna · 1,090 m · Forest trail</div>
+        <p class="description">Biodiverse rainforest trail near Los Baños with waterfalls and panoramic Laguna views.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 TrailPH • Explore Responsibly • Leave No Trace</p>
+</footer>
+
+</body>
+</html>

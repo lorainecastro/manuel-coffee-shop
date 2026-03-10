@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrailPH — Top 10 Tourist Trails</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --teal: #4a7c6f;
       --teal-light: #5a9485;
+      --teal-bright: #6ecfbf;
       --cream: #f5f0eb;
       --bg: #0f0f0e;
       --bg-dark: #0a0a09;
@@ -29,10 +30,14 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--cream);
       min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     /* ── NAV ── */
@@ -54,53 +59,61 @@
     }
     .nav-logo-icon {
       width: 36px; height: 36px;
-      background: var(--teal); border-radius: 10px;
+      background: var(--teal-bright); border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(110, 207, 191, 0.35);
     }
     .nav-logo-text {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600; font-size: 18px;
-      color: var(--cream); letter-spacing: -0.01em;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 18px;
+      color: #fff; letter-spacing: -0.01em;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
-    .nav-logo-text span { color: var(--teal); }
+    .nav-logo-text span { color: var(--teal-bright); }
     .nav-links {
       display: flex; align-items: center; gap: 36px;
     }
     .nav-link {
       font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 400;
-      color: rgba(245,240,235,0.75);
+      font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.85);
       text-decoration: none; letter-spacing: 0.03em;
       transition: color 0.2s; cursor: pointer;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
     }
-    .nav-link:hover { color: var(--cream); }
+    .nav-link:hover { color: #fff; }
 
     /* ── BUTTONS ── */
     .btn-primary {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 500;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
       padding: 13px 28px; border-radius: 100px;
-      border: none; background: var(--teal);
-      color: #fff; cursor: pointer;
+      border: none; background: var(--teal-bright);
+      color: #0a0a09; cursor: pointer;
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
       letter-spacing: 0.03em; white-space: nowrap;
     }
     .btn-primary:hover {
-      background: var(--teal-light);
+      background: #88dfd2;
       transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(74,124,111,0.4);
+      box-shadow: 0 8px 24px rgba(110,207,191,0.45);
     }
     .btn-outline {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 14px; font-weight: 500;
       padding: 13px 28px; border-radius: 100px;
-      border: 1.5px solid rgba(245,240,235,0.3);
-      background: transparent; color: var(--cream);
-      cursor: pointer; transition: border-color 0.2s;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
       letter-spacing: 0.03em;
     }
-    .btn-outline:hover { border-color: rgba(245,240,235,0.7); }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.14);
+    }
 
     /* ── HERO ── */
     #hero {
@@ -125,8 +138,9 @@
       animation: fadeUp 0.9s ease 0.2s forwards;
     }
     .hero-content h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(52px, 8vw, 96px);
-      font-weight: 700; line-height: 1.05;
+      font-weight: 800; line-height: 1.05;
       letter-spacing: -0.02em;
       margin: 16px 0 20px; color: var(--cream);
       opacity: 0; transform: translateY(30px);
@@ -179,6 +193,7 @@
     }
     .stat-item:last-child { border-right: none; }
     .stat-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 32px; font-weight: 700;
       letter-spacing: -0.02em; color: var(--cream);
     }
@@ -191,12 +206,13 @@
     .section-label {
       font-family: 'DM Sans', sans-serif;
       font-size: 11px; font-weight: 500;
-      letter-spacing: 0.18em; color: var(--teal);
+      letter-spacing: 0.18em; color: var(--teal-bright);
       text-transform: uppercase; display: block;
     }
     .section-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(36px, 5vw, 52px);
-      font-weight: 700; letter-spacing: -0.02em;
+      font-weight: 800; letter-spacing: -0.02em;
       margin-top: 4px;
     }
     .section-header {
@@ -204,7 +220,7 @@
     }
     .divider {
       width: 48px; height: 2px;
-      background: linear-gradient(to right, var(--teal), transparent);
+      background: linear-gradient(to right, var(--teal-bright), transparent);
       margin: 16px auto 0;
     }
 
@@ -302,6 +318,7 @@
     }
     .card-content.small { padding: 20px; }
     .card-content h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 22px; font-weight: 700;
       margin-bottom: 4px; letter-spacing: -0.01em;
     }
@@ -330,13 +347,113 @@
     .view-trail-btn {
       font-family: 'DM Sans', sans-serif;
       font-size: 13px; font-weight: 500;
-      color: #8ecfc4; background: none; border: none;
+      color: var(--teal-bright); background: none; border: none;
       cursor: pointer; padding: 0;
       display: flex; align-items: center; gap: 6px;
       transition: gap 0.2s ease, color 0.2s;
       letter-spacing: 0.03em;
     }
     .view-trail-btn:hover { color: #aee8de; gap: 10px; }
+
+    /* ── ABOUT SECTION ── */
+    #about {
+      padding: 100px 40px;
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 12px;
+    }
+    .about-img-grid img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 12px;
+      display: block;
+    }
+    .about-img-grid img:first-child {
+      grid-row: span 2;
+      height: 100%;
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--teal);
+      border-radius: 16px; padding: 20px 24px;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .about-badge-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 36px; font-weight: 800;
+      color: #fff; line-height: 1;
+      display: block;
+    }
+    .about-badge-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px; color: rgba(255,255,255,0.7);
+      font-weight: 300; margin-top: 4px; display: block;
+    }
+    .about-text .section-label { text-align: left; }
+    .about-text .section-heading {
+      text-align: left; margin-bottom: 20px;
+    }
+    .about-text p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 300;
+      color: rgba(245,240,235,0.65);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+    .about-features {
+      margin-top: 36px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .about-feature {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .about-feature-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(74,124,111,0.15);
+      border: 1px solid rgba(74,124,111,0.3);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-feature-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--cream); margin-bottom: 3px;
+    }
+    .about-feature-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--text-muted); font-weight: 300;
+      line-height: 1.5;
+    }
+    .about-cta {
+      margin-top: 40px;
+      display: flex; gap: 14px; align-items: center;
+    }
+    .about-cta-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--teal-bright);
+      text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: gap 0.2s;
+    }
+    .about-cta-link:hover { gap: 10px; }
+
+    @media (max-width: 900px) {
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { display: none; }
+      .about-features { grid-template-columns: 1fr; }
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -357,10 +474,10 @@
       display: flex; align-items: center; justify-content: center;
     }
     .footer-logo-text {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600; font-size: 16px; color: var(--cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 16px; color: var(--cream);
     }
-    .footer-logo-text span { color: var(--teal); }
+    .footer-logo-text span { color: var(--teal-bright); }
     .footer-copy {
       font-family: 'DM Sans', sans-serif;
       font-size: 12px; color: rgba(245,240,235,0.3); font-weight: 300;
@@ -428,6 +545,7 @@
       font-size: 12px; font-weight: 600; color: #fff;
     }
     .modal-hero-info h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(24px, 5vw, 34px);
       font-weight: 700; color: #fff;
       letter-spacing: -0.02em; line-height: 1.1;
@@ -456,7 +574,6 @@
       padding: 28px 28px 32px;
     }
 
-    /* stat tiles */
     .modal-stats {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 10px; margin-bottom: 28px;
@@ -474,14 +591,14 @@
       text-transform: uppercase;
     }
     .modal-stat-value {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 14px; font-weight: 600; color: #1a1a18;
       line-height: 1.2;
     }
 
-    /* about */
     .modal-section { margin-bottom: 24px; }
     .modal-section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px; font-weight: 700;
       color: #1a1a18; margin-bottom: 10px;
       letter-spacing: -0.01em;
@@ -492,9 +609,9 @@
       color: #444; font-weight: 300;
     }
 
-    /* tips */
     .modal-tips-title {
       display: flex; align-items: center; gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px; font-weight: 700;
       color: #1a1a18; margin-bottom: 14px;
       letter-spacing: -0.01em;
@@ -516,9 +633,9 @@
       font-size: 14px; color: #444; font-weight: 300; line-height: 1.5;
     }
 
-    /* map */
     .modal-map-title {
       display: flex; align-items: center; gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 18px; font-weight: 700;
       color: #1a1a18; margin-bottom: 14px;
       letter-spacing: -0.01em;
@@ -537,7 +654,7 @@
     }
     @media (max-width: 600px) {
       nav { padding: 0 20px; }
-      #featured, #trails-section { padding-left: 20px; padding-right: 20px; }
+      #featured, #trails-section, #about { padding-left: 20px; padding-right: 20px; }
       .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -549,7 +666,7 @@
   <nav id="navbar">
     <a class="nav-logo" href="#">
       <div class="nav-logo-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a0a09" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 17l4-8 4 4 4-6 4 10"/>
         </svg>
       </div>
@@ -558,14 +675,13 @@
     <div class="nav-links">
       <a class="nav-link" href="#trails-section">Trails</a>
       <a class="nav-link" href="#featured">Featured</a>
-      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#about">About</a>
       <button class="btn-primary" style="padding:10px 22px;font-size:13px;" onclick="document.getElementById('trails-section').scrollIntoView({behavior:'smooth'})">Explore Trails</button>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
-    <!-- <img id="hero-bg" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&q=85" alt="Philippines mountains" /> -->
     <img id="hero-bg" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90" alt="Philippines mountains" />
     <div id="hero-overlay"></div>
     <div class="hero-content">
@@ -574,7 +690,7 @@
       <p>Explore breathtaking trails across 7,641 islands —<br>from misty mountain peaks to volcanic crater lakes</p>
       <div class="hero-cta">
         <button class="btn-primary" onclick="document.getElementById('trails-section').scrollIntoView({behavior:'smooth'})">Explore Trails</button>
-        <button class="btn-outline">View Map</button>
+        <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -588,28 +704,28 @@
   <section id="stats">
     <div class="stats-grid">
       <div class="stat-item">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 17l4-8 4 4 4-6 4 10"/>
         </svg>
         <span class="stat-value">10</span>
         <span class="stat-label">Curated Trails</span>
       </div>
       <div class="stat-item">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
         </svg>
         <span class="stat-value">7,641</span>
         <span class="stat-label">Islands to Explore</span>
       </div>
       <div class="stat-item">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
         <span class="stat-value">50K+</span>
         <span class="stat-label">Happy Hikers</span>
       </div>
       <div class="stat-item">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
         <span class="stat-value">4.7</span>
@@ -643,6 +759,83 @@
       <button class="filter-btn" data-filter="Expert">Expert</button>
     </div>
     <div class="trails-grid" id="trails-grid"></div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-visual">
+        <div class="about-img-grid">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Mountain trail" />
+          <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=600&q=80" alt="Chocolate Hills" />
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80" alt="Batanes" />
+        </div>
+        <div class="about-badge">
+          <span class="about-badge-num">10+</span>
+          <span class="about-badge-label">Years of Trails</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-heading">Your Guide to the<br>Philippine Wild</h2>
+        <p>TrailPH is a passion project born from a love of the outdoors and a deep pride in the Philippines' extraordinary natural landscapes. From the misty peaks of the Cordillera to the volcanic shores of Bicol, our mission is to connect hikers — local and foreign alike — with the trails that define this archipelago.</p>
+        <p>Every route in our collection is personally scouted, verified, and curated with safety, sustainability, and cultural respect in mind. We partner with local guides, DENR-registered groups, and indigenous communities to ensure each adventure enriches rather than diminishes the landscapes we celebrate.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.8" stroke-linecap="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="about-feature-title">Safety First</div>
+              <div class="about-feature-desc">All trails include up-to-date safety advisories and permit requirements.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.8" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4M12 16h.01"/>
+              </svg>
+            </div>
+            <div>
+              <div class="about-feature-title">Expert Guidance</div>
+              <div class="about-feature-desc">Tips from seasoned mountaineers and certified local guides.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.8" stroke-linecap="round">
+                <path d="M3 17l4-8 4 4 4-6 4 10"/>
+              </svg>
+            </div>
+            <div>
+              <div class="about-feature-title">All Skill Levels</div>
+              <div class="about-feature-desc">Easy half-day walks to expert multi-day summit climbs.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ecfbf" stroke-width="1.8" stroke-linecap="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="about-feature-title">Local Focus</div>
+              <div class="about-feature-desc">Supporting indigenous communities and DENR-certified trail stewards.</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-cta">
+          <button class="btn-primary" onclick="document.getElementById('trails-section').scrollIntoView({behavior:'smooth'})">Start Exploring</button>
+          <a class="about-cta-link" href="#">
+            Meet our team
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- MODAL -->
@@ -847,7 +1040,6 @@
           <span>${tip}</span>
         </div>`).join('');
 
-      const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=&layer=mapnik&marker=&query=${encodeURIComponent(d.mapQ)}`;
       document.getElementById('modal-map').src = `https://maps.google.com/maps?q=${encodeURIComponent(d.mapQ)}&output=embed&z=11`;
 
       modalEl.scrollTop = 0;
@@ -864,7 +1056,6 @@
     backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // Delegate click on all "View Trail" buttons
     document.addEventListener('click', e => {
       const btn = e.target.closest('.view-trail-btn');
       if (!btn) return;

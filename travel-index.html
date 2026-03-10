@@ -458,7 +458,7 @@
     /* ── TEAM SECTION ── */
     #team {
       padding: 100px 40px;
-      max-width: 1300px; margin: 0 auto;
+      max-width: 1350px; margin: 0 auto;
     }
     .team-grid {
       display: grid;
@@ -897,6 +897,25 @@
       overflow: hidden; border: none;
     }
 
+    /* ── PARTICLES ── */
+    #trails-particles,
+    #team-particles {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #trails-section,
+    #team {
+      position: relative;
+    }
+    #trails-section > *:not(#trails-particles),
+    #team > *:not(#team-particles) {
+      position: relative;
+      z-index: 1;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .featured-grid { grid-template-columns: 1fr; }
@@ -998,6 +1017,7 @@
 
   <!-- ALL TRAILS -->
   <section id="trails-section">
+    <canvas id="trails-particles"></canvas>
     <div class="section-header">
       <span class="section-label">Explore All Routes</span>
       <div class="divider"></div>
@@ -1092,6 +1112,7 @@
 
   <!-- TEAM SECTION -->
   <section id="team">
+    <canvas id="team-particles"></canvas>
     <div class="section-header">
       <span class="section-label">The People Behind the Trails</span>
       <div class="divider"></div>
@@ -1517,6 +1538,114 @@
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
     });
+
+    // ── TEAL PARTICLES ──
+    function initParticles(canvasId, sectionId) {
+      const canvas = document.getElementById(canvasId);
+      const section = document.getElementById(sectionId);
+      if (!canvas || !section) return;
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width  = section.offsetWidth;
+        canvas.height = section.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const TEAL       = '#6ecfbf';   /* --teal-bright */
+      const TEAL_DIM   = '#4a7c6f';   /* --teal */
+      const COUNT      = 55;
+
+      const particles = Array.from({ length: COUNT }, () => ({
+        x:     Math.random() * canvas.width,
+        y:     Math.random() * canvas.height,
+        r:     Math.random() * 2.2 + 0.5,
+        vx:    (Math.random() - 0.5) * 0.45,
+        vy:    (Math.random() - 0.5) * 0.45,
+        alpha: Math.random() * 0.55 + 0.15,
+        pulse: Math.random() * Math.PI * 2,   // phase offset for glow pulsing
+      }));
+
+      let raf;
+      function draw() {
+        canvas.width  = section.offsetWidth;
+        canvas.height = section.offsetHeight;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const t = Date.now() / 1000;
+
+        // draw connection lines first
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 130) {
+              ctx.save();
+              ctx.strokeStyle = TEAL_DIM;
+              ctx.globalAlpha = (1 - dist / 130) * 0.18;
+              ctx.lineWidth = 0.8;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+              ctx.restore();
+            }
+          }
+        }
+
+        // draw dots
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width)  p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+
+          // subtle pulse alpha
+          const pulsedAlpha = p.alpha * (0.75 + 0.25 * Math.sin(t * 1.4 + p.pulse));
+
+          // outer glow
+          const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
+          grd.addColorStop(0,   `rgba(110,207,191,${pulsedAlpha * 0.55})`);
+          grd.addColorStop(1,   'rgba(110,207,191,0)');
+          ctx.save();
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = grd;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // core dot
+          ctx.save();
+          ctx.globalAlpha = pulsedAlpha;
+          ctx.fillStyle = TEAL;
+          ctx.shadowColor = TEAL;
+          ctx.shadowBlur  = 6;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        });
+
+        raf = requestAnimationFrame(draw);
+      }
+
+      // Only animate when section is in/near viewport
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { if (!raf) draw(); }
+          else { cancelAnimationFrame(raf); raf = null; }
+        });
+      }, { rootMargin: '200px' });
+      observer.observe(section);
+    }
+
+    initParticles('trails-particles', 'trails-section');
+    initParticles('team-particles',   'team');
   </script>
 </body>
 </html>
